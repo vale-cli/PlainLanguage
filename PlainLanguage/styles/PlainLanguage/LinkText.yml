@@ -1,0 +1,22 @@
+# "Write effective links": "Make the link meaningful. Don't use 'click
+# here' or 'read more.'" Name the page the link goes to.
+extends: existence
+message: "'%s' doesn't say where the link goes. Use the name of the page."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/web/write-effective-links.md
+level: warning
+scope: link
+nonword: true
+raw:
+  - '(?i)^\s*(?:click here|click|here|this|this link|this page|link|more|read more|learn more|see more|find out more|more info|more information)\s*[.!]?\s*$'
+
+tests:
+  - name: fires
+    input: |
+      [Click here](https://example.gov/apply) to apply, or [read more](https://example.gov/faq).
+    want: |
+      1:2:PlainLanguage.LinkText:'Click here' doesn't say where the link goes. Use the name of the page.
+      1:55:PlainLanguage.LinkText:'read more' doesn't say where the link goes. Use the name of the page.
+  - name: clean
+    input: |
+      [Apply for a permit](https://example.gov/apply), or see [permit questions](https://example.gov/faq).
+    want: ""

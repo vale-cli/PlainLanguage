@@ -1,0 +1,14 @@
+fixtures/page.html:5:5:PlainLanguage.HowToHeadings:Start the heading with the action: 'Getting a permit', not 'How to get a permit'.
+fixtures/page.html:6:22:PlainLanguage.Shall:Use 'must' instead of 'shall'. For an option, 'may'; for a recommendation, 'should'.
+fixtures/page.html:6:55:PlainLanguage.Legalese:Use 'Under', 'By', or 'Following' instead of 'Pursuant to'.
+fixtures/page.html:6:87:PlainLanguage.PassiveVoice:'are processed' is passive. Say who does it.
+fixtures/page.html:6:104:PlainLanguage.Acronyms:'BLM' has no definition. Spell it out the first time, or use a short name instead.
+fixtures/page.html:6:108:PlainLanguage.Legalese:Use 'under', 'by', or 'following' instead of 'in accordance with'.
+fixtures/page.html:7:4:PlainLanguage.Openers:'It is necessary to' delays the point. Start with who does what.
+fixtures/page.html:7:23:PlainLanguage.HiddenVerbs:Use the verb: 'pay' instead of 'make a payment of'.
+fixtures/page.html:7:49:PlainLanguage.SimpleWords:Use 'before' instead of 'prior to'.
+fixtures/page.html:7:79:PlainLanguage.DoubleNegatives:'not unlimited' stacks one negative on another. Say it in the positive.
+fixtures/page.html:7:114:PlainLanguage.SimpleWords:Use 'use' instead of 'utilize'.
+fixtures/page.html:7:131:PlainLanguage.Wordy:Use 'regularly' instead of 'on a regular basis'.
+fixtures/page.html:8:21:PlainLanguage.Slashes:'and/or' leaves the reader to decide. Use 'and' or 'or', or write 'X, Y, or both'.
+fixtures/page.html:8:90:PlainLanguage.LinkText:'click here' doesn't say where the link goes. Use the name of the page.

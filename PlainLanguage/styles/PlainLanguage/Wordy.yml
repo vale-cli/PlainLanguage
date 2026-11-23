@@ -1,0 +1,48 @@
+# "Be concise": the phrases the guidelines reduce to a word or two, and the
+# doublets that say one thing twice.
+extends: substitution
+message: "Use '%s' instead of '%s'."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/concise/index.md
+level: suggestion
+ignorecase: true
+matchcase: true
+action:
+  name: replace
+swap:
+  a sufficient number of: enough
+  at this point in time: now
+  is able to: can
+  are able to: can
+  was able to: could
+  were able to: could
+  on a daily basis: daily
+  on a weekly basis: weekly
+  on a monthly basis: monthly
+  on a quarterly basis: quarterly
+  on a yearly basis: yearly
+  on an annual basis: annually
+  on a regular basis: regularly
+  'on the grounds? that': because
+  due and payable: due
+  cease and desist: stop
+  begin and commence: start
+  knowledge and information: knowledge|information
+
+tests:
+  - name: fires
+    input: |
+      At this point in time, the office is able to pay on a monthly basis.
+    want: |
+      1:1:PlainLanguage.Wordy:Use 'Now' instead of 'At this point in time'.
+      1:35:PlainLanguage.Wordy:Use 'can' instead of 'is able to'.
+      1:50:PlainLanguage.Wordy:Use 'monthly' instead of 'on a monthly basis'.
+  - name: doublets
+    input: |
+      The fee is due and payable, so cease and desist.
+    want: |
+      1:12:PlainLanguage.Wordy:Use 'due' instead of 'due and payable'.
+      1:32:PlainLanguage.Wordy:Use 'stop' instead of 'cease and desist'.
+  - name: clean
+    input: |
+      Now the office can pay monthly. The fee is due, so stop.
+    want: ""

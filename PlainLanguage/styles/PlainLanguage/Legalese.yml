@@ -1,0 +1,50 @@
+# "Avoid jargon": legal words with "a musty smell", from Kimble's list in the
+# guidelines, and the legal entries of "Use simple words and phrases".
+extends: substitution
+message: "Use '%s' instead of '%s'."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/words/avoid-jargon.md
+level: warning
+ignorecase: true
+matchcase: true
+action:
+  name: replace
+swap:
+  above-mentioned: this|that
+  aforementioned: this|that
+  foregoing: this|that
+  henceforth: from now on
+  'hereinafter (?:referred to as|called)': called
+  hereinafter: from now on
+  hereafter: from now on|later
+  herein: here|in this
+  heretofore: until now|before
+  herewith: here|with this
+  thereafter: after that|then
+  therein: there|in it
+  thereof: its|their|of it
+  therewith: with it
+  whatsoever: at all
+  whereat: where|at which
+  wherein: where|in which
+  whereof: of which
+  in accordance with: under|by|following
+  pursuant to: under|by|following
+  under the provisions of: under
+  set forth in: in
+  inter alia: among other things
+  notwithstanding: despite|in spite of
+  'it is incumbent (?:up)?on (\w+) to': $1 must
+  the undersigned: I
+
+tests:
+  - name: fires
+    input: |
+      Pursuant to the rules set forth herein, it is incumbent upon applicants to file.
+    want: |
+      1:1:PlainLanguage.Legalese:Use 'Under', 'By', or 'Following' instead of 'Pursuant to'.
+      1:33:PlainLanguage.Legalese:Use 'here' or 'in this' instead of 'herein'.
+      1:41:PlainLanguage.Legalese:Use 'applicants must' instead of 'it is incumbent upon applicants to'.
+  - name: clean
+    input: |
+      Under these rules, applicants must file.
+    want: ""

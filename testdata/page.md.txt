@@ -1,0 +1,35 @@
+fixtures/page.md:3:4:PlainLanguage.HowToHeadings:Start the heading with the action: 'Getting a permit', not 'How to get a permit'.
+fixtures/page.md:5:1:PlainLanguage.Openers:'It is important that' delays the point. Start with who does what.
+fixtures/page.md:5:58:PlainLanguage.Shall:Use 'must' instead of 'shall'. For an option, 'may'; for a recommendation, 'should'.
+fixtures/page.md:5:78:PlainLanguage.Slashes:'and/or' leaves the reader to decide. Use 'and' or 'or', or write 'X, Y, or both'.
+fixtures/page.md:5:98:PlainLanguage.Acronyms:'ESAC' has no definition. Spell it out the first time, or use a short name instead.
+fixtures/page.md:5:103:PlainLanguage.SimpleWords:Use 'before' instead of 'prior to'.
+fixtures/page.md:5:124:PlainLanguage.Shall:Use 'must not' instead of 'shall not'. For an option, 'may'; for a recommendation, 'should'.
+fixtures/page.md:7:1:PlainLanguage.Legalese:Use 'Under', 'By', or 'Following' instead of 'Pursuant to'.
+fixtures/page.md:7:33:PlainLanguage.Legalese:Use 'here' or 'in this' instead of 'herein'.
+fixtures/page.md:7:44:PlainLanguage.HiddenVerbs:Use the verb: 'decided' instead of 'made a decision'.
+fixtures/page.md:7:63:PlainLanguage.HiddenVerbs:Use the verb: 'analyze' instead of 'conduct an analysis of'.
+fixtures/page.md:7:103:PlainLanguage.SimpleWords:Use 'to' instead of 'in order to'.
+fixtures/page.md:7:115:PlainLanguage.SimpleWords:Use 'make sure' instead of 'ensure'.
+fixtures/page.md:7:132:PlainLanguage.Wordy:Use 'Now' instead of 'At this point in time'.
+fixtures/page.md:7:166:PlainLanguage.Wordy:Use 'can' instead of 'is able to'.
+fixtures/page.md:7:181:PlainLanguage.Wordy:Use 'monthly' instead of 'on a monthly basis'.
+fixtures/page.md:9:1:PlainLanguage.Omit:'Please be advised that' adds nothing. Cut it.
+fixtures/page.md:9:8:PlainLanguage.PassiveVoice:'be advised' is passive. Say who does it.
+fixtures/page.md:9:11:Strict.Words:Use 'told' or 'recommended' instead of 'advised'.
+fixtures/page.md:9:31:PlainLanguage.Omit:'in the process of' adds nothing. Cut it.
+fixtures/page.md:9:69:PlainLanguage.Openers:'The following documents must' delays the point. Start with who does what.
+fixtures/page.md:9:124:PlainLanguage.PassiveVoice:'were reviewed' is passive. Say who does it.
+fixtures/page.md:9:160:PlainLanguage.Pronouns:Use 'your' or 'their' instead of 'his or her'.
+fixtures/page.md:9:184:PlainLanguage.Modifiers:'really' is probably not needed. Cut it, or use a stronger word.
+fixtures/page.md:11:5:PlainLanguage.DoubleNegatives:'may not apply until' stacks one negative on another. Say it in the positive.
+fixtures/page.md:11:36:PlainLanguage.DoubleNegatives:'no fewer than' stacks one negative on another. Say it in the positive.
+fixtures/page.md:11:85:PlainLanguage.DoubleNegatives:'does not become void' stacks one negative on another. Say it in the positive.
+fixtures/page.md:11:135:PlainLanguage.Jargon:'touch base' is filler. Say what you mean.
+fixtures/page.md:11:149:PlainLanguage.Jargon:'best practices' is filler. Say what you mean.
+fixtures/page.md:13:2:PlainLanguage.LinkText:'Click here' doesn't say where the link goes. Use the name of the page.
+fixtures/page.md:13:67:Strict.Words:Use 'give' or 'offer' instead of 'provide'.
+fixtures/page.md:13:94:Strict.Words:Use 'give' or 'send' instead of 'submit'.
+fixtures/page.md:13:103:Strict.Words:Use 'ask' instead of 'request'.
+fixtures/page.md:15:1:PlainLanguage.ParagraphLength:183 words in one paragraph. Keep it under 150, one topic each.
+fixtures/page.md:15:427:PlainLanguage.SentenceLength:35 words in one sentence. Split it, one idea in each.

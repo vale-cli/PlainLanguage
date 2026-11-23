@@ -1,0 +1,32 @@
+# "Be concise": "absolutely", "actually", "completely", "really", "quite",
+# "totally", and "very" are "probably not necessary and may even be
+# nonsensical."
+extends: existence
+message: "'%s' is probably not needed. Cut it, or use a stronger word."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/concise/index.md
+level: suggestion
+ignorecase: true
+action:
+  name: remove
+tokens:
+  - absolutely
+  - actually
+  - completely
+  - really
+  - quite
+  - totally
+  - very
+  - particularly
+  - somewhat
+
+tests:
+  - name: fires
+    input: |
+      This information is really critical, and the claim was totally unrealistic.
+    want: |
+      1:21:PlainLanguage.Modifiers:'really' is probably not needed. Cut it, or use a stronger word.
+      1:56:PlainLanguage.Modifiers:'totally' is probably not needed. Cut it, or use a stronger word.
+  - name: clean
+    input: |
+      This information is critical, and the claim was absurd.
+    want: ""

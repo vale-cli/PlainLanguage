@@ -1,0 +1,28 @@
+# "Avoid jargon": the guidelines' list of "meaningless filler phrases" from
+# business writing.
+extends: existence
+message: "'%s' is filler. Say what you mean."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/words/avoid-jargon.md
+level: suggestion
+ignorecase: true
+tokens:
+  - think(?:s|ing)? outside the box
+  - value[- ]added
+  - best practices?
+  - for all intents and purposes
+  - touch(?:es|ed|ing)? base
+  - synerg(?:y|ies|istic)
+  - quality solutions
+
+tests:
+  - name: fires
+    input: |
+      Touch base with the team on best practices for all intents and purposes.
+    want: |
+      1:1:PlainLanguage.Jargon:'Touch base' is filler. Say what you mean.
+      1:29:PlainLanguage.Jargon:'best practices' is filler. Say what you mean.
+      1:44:PlainLanguage.Jargon:'for all intents and purposes' is filler. Say what you mean.
+  - name: clean
+    input: |
+      Call the team about the steps that work.
+    want: ""

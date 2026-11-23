@@ -1,0 +1,25 @@
+# "Use simple words and phrases" cuts "it is", "there is", and "there are",
+# and turns "it is essential" into "must"; "Use active voice" rewrites "The
+# following information must be included". Start with who does what.
+extends: existence
+message: "'%s' delays the point. Start with who does what."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/words/use-simple-words-phrases.md
+level: suggestion
+scope: sentence
+tokens:
+  - '^It is (?:important|necessary|essential|recommended|requested|imperative|critical|advisable|required|vital|crucial|mandatory) (?:that|to|for)\b'
+  - '^There (?:is|are|was|were) (?:\w+ ){1,2}(?:who|that|which)\b'
+  - '^The following(?: \w+){0,2} (?:is|are|must|will|should|may|can)\b'
+
+tests:
+  - name: fires
+    input: |
+      It is important that you sign the form. The following information must be included. There are many people who apply late.
+    want: |
+      1:1:PlainLanguage.Openers:'It is important that' delays the point. Start with who does what.
+      1:41:PlainLanguage.Openers:'The following information must' delays the point. Start with who does what.
+      1:85:PlainLanguage.Openers:'There are many people who' delays the point. Start with who does what.
+  - name: clean
+    input: |
+      You must sign the form. Include the following information. Many people apply late, and it is important to us that they don't.
+    want: ""

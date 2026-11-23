@@ -1,0 +1,30 @@
+# "Use 'must' to indicate requirements": "shall" can mean must, may, will,
+# or is. Use "must" for an obligation and "must not" for a prohibition.
+extends: substitution
+message: "Use '%s' instead of '%s'. For an option, 'may'; for a recommendation, 'should'."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/conversational/use-must-to-indicate-requirements.md
+level: warning
+ignorecase: true
+matchcase: true
+action:
+  name: replace
+swap:
+  shall not: must not
+  shan't: must not
+  'shall(?! not\b)(?!\s+(?:we|I)\b)': must
+
+tests:
+  - name: fires
+    input: |
+      The applicant shall file the form, and shall not mail it.
+    want: |
+      1:15:PlainLanguage.Shall:Use 'must' instead of 'shall'. For an option, 'may'; for a recommendation, 'should'.
+      1:40:PlainLanguage.Shall:Use 'must not' instead of 'shall not'. For an option, 'may'; for a recommendation, 'should'.
+  - name: questions
+    input: |
+      Shall we begin? Shall I send it?
+    want: ""
+  - name: clean
+    input: |
+      You must file the form, and you must not mail it.
+    want: ""

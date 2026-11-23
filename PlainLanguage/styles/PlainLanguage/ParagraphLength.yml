@@ -1,0 +1,22 @@
+# "Write short paragraphs": "no more than 150 words in three to eight
+# sentences", and never more than 250.
+extends: occurrence
+message: "%d words in one paragraph. Keep it under 150, one topic each."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/concise/write-short-paragraphs.md
+level: suggestion
+scope: paragraph
+max: 150
+token: '\b\w+\b'
+
+tests:
+  - name: fires
+    input: |
+      We send the notice thirty days before the sale. We print it in one local paper. We print it in one trade paper. We name the reservation where the tracts are. We mail the notice to each person on the list. We keep a copy of the notice at the office. We describe each tract in the notice. We answer questions by phone. We answer questions by mail. We post the notice on our website. We send a copy to the tribe. We send a copy to the state. We keep the list up to date. We add new names when people ask. We remove names when people ask. We check the list each month. We fix errors when we find them. We tell you when the sale is over. We post the results on our website. We send the results to the tribe. We send the results to the state. We keep the results for five years. We answer questions about the results by phone or mail.
+    want: |
+      1:1:PlainLanguage.ParagraphLength:168 words in one paragraph. Keep it under 150, one topic each.
+  - name: clean
+    input: |
+      We send the notice thirty days before the sale. We print it in one local paper and one trade paper.
+
+      We mail the notice to each person on the list.
+    want: ""

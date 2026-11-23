@@ -1,0 +1,29 @@
+# Entries in "Use simple words and phrases" whose plain form is "(omit)",
+# and "hereby" from "Avoid jargon": cut them and the sentence says the same.
+extends: existence
+message: "'%s' adds nothing. Cut it."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/words/use-simple-words-phrases.md
+level: suggestion
+ignorecase: true
+action:
+  name: remove
+tokens:
+  - '(?:please )?be advised(?: that)?'
+  - in the process of
+  - take action to
+  - the month of
+  - hereby
+
+tests:
+  - name: fires
+    input: |
+      We are in the process of updating the forms for the month of May, and we hereby take action to fix them.
+    want: |
+      1:8:PlainLanguage.Omit:'in the process of' adds nothing. Cut it.
+      1:49:PlainLanguage.Omit:'the month of' adds nothing. Cut it.
+      1:74:PlainLanguage.Omit:'hereby' adds nothing. Cut it.
+      1:81:PlainLanguage.Omit:'take action to' adds nothing. Cut it.
+  - name: clean
+    input: |
+      We are updating the forms for May, and we will fix them.
+    want: ""

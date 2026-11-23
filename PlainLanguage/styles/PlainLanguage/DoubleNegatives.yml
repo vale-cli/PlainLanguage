@@ -1,0 +1,38 @@
+# "Use positive language": two negatives that cancel, "no fewer than", "is
+# not ... unless", a "not" before a negative word, and an exception to an
+# exception. Each asks the reader to switch from no to yes.
+extends: existence
+message: "'%s' stacks one negative on another. Say it in the positive."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/concise/use-positive-language.md
+level: warning
+ignorecase: true
+tokens:
+  - '(?:no|not) (?:fewer|less) than'
+  - has not yet attained
+  - 'may not\b[^.;:!?]{1,60}?\buntil'
+  - '(?:(?:is|are|was|were|does|did|may|must|shall|could|would|should)(?: not|n''t)|cannot|can''t|will not|won''t)\b[^.;:!?]{0,60}?\b(?:unless|fail(?:s|ed)? to|in the absence of|unlawful|disallowed|void|invalid|insufficient|notwithstanding)'
+  - 'not un(?!der|til|ion|ique|it|iform|ivers|less|to\b|ix|icode|ited|ifi)[a-z]{4,}'
+  - 'except\b[^.;:!?]{1,120}?\bunless'
+
+tests:
+  - name: fires
+    input: |
+      File no fewer than three copies. The grant does not become void unless you fail to reply.
+    want: |
+      1:6:PlainLanguage.DoubleNegatives:'no fewer than' stacks one negative on another. Say it in the positive.
+      1:44:PlainLanguage.DoubleNegatives:'does not become void' stacks one negative on another. Say it in the positive.
+  - name: until and un-
+    input: |
+      You may not apply until June. The delay is not unreasonable.
+    want: |
+      1:5:PlainLanguage.DoubleNegatives:'may not apply until' stacks one negative on another. Say it in the positive.
+      1:44:PlainLanguage.DoubleNegatives:'not unreasonable' stacks one negative on another. Say it in the positive.
+  - name: exceptions to exceptions
+    input: |
+      You may prospect on any lands except parks, unless you hold rights there.
+    want: |
+      1:31:PlainLanguage.DoubleNegatives:'except parks, unless' stacks one negative on another. Say it in the positive.
+  - name: clean
+    input: |
+      File at least three copies. The grant stays active if you reply. Don't apply until June. It's not under review, and it's not unique.
+    want: ""

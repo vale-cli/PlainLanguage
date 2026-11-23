@@ -1,0 +1,27 @@
+PlainLanguage is MIT licensed; see LICENSE.
+
+The rules restate, in their comments and messages, the advice they enforce,
+and each rule links to the page it comes from. Source and terms:
+
+  - Plain Language Action and Information Network, Federal Plain Language
+    Guidelines, published at plainlanguage.gov and now archived at
+    https://github.com/GSA/plainlanguage.gov/tree/main/_pages/guidelines.
+    A work of the United States government, in the public domain in the
+    United States, and dedicated worldwide under CC0 1.0 Universal
+    (https://github.com/GSA/plainlanguage.gov/blob/main/LICENSE.md).
+
+    SimpleWords, Strict.Words, and Omit transcribe the list in "Use simple
+    words and phrases", with each verb given in its four forms. Legalese
+    takes Joseph Kimble's list as quoted in "Avoid jargon", with the legal
+    entries of the simple-words list; Jargon takes that page's list of
+    filler phrases. Wordy takes the phrases and doublets in "Be concise",
+    and HiddenVerbs and DoubleNegatives start from the examples in "Avoid
+    hidden verbs" and "Use positive language". The 150-word paragraph limit
+    is from "Write short paragraphs".
+
+The guidelines quote and credit published authors, among them Joseph
+Kimble, Bryan A. Garner, and Rudolf Flesch; rule comments that quote the
+guidelines quote those passages as the guidelines give them. This package is
+not endorsed by or affiliated with the United States government, the General
+Services Administration, or the Plain Language Action and Information
+Network.

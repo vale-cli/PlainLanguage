@@ -1,0 +1,32 @@
+# "Address the user": "he or she" and "his or her" are awkward; write to
+# the reader as "you", or use "they".
+extends: substitution
+message: "Use '%s' instead of '%s'."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/audience/address-the-user.md
+level: suggestion
+ignorecase: true
+matchcase: true
+action:
+  name: replace
+swap:
+  he or she: you|they
+  she or he: you|they
+  he/she: you|they
+  s/he: you|they
+  his or her: your|their
+  her or his: your|their
+  his/her: your|their
+  him or her: you|them
+  him/her: you|them
+
+tests:
+  - name: fires
+    input: |
+      The applicant must give his or her address before he or she signs.
+    want: |
+      1:25:PlainLanguage.Pronouns:Use 'your' or 'their' instead of 'his or her'.
+      1:51:PlainLanguage.Pronouns:Use 'you' or 'they' instead of 'he or she'.
+  - name: clean
+    input: |
+      You must give your address before you sign.
+    want: ""

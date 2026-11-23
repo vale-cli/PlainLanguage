@@ -1,0 +1,23 @@
+# "Effective headings": in a list of steps, headings that all open with
+# "how to" look alike. Start with the action: "Getting a permit".
+extends: existence
+message: "Start the heading with the action: 'Getting a permit', not 'How to get a permit'."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/organize/effective-headings.md
+level: suggestion
+scope: heading
+nonword: true
+raw:
+  - '(?i)^\s*how to\b'
+
+tests:
+  - name: fires
+    input: |
+      ## How to get a permit
+    want: |
+      1:4:PlainLanguage.HowToHeadings:Start the heading with the action: 'Getting a permit', not 'How to get a permit'.
+  - name: clean
+    input: |
+      ## Getting a permit
+
+      ## How do I get a permit?
+    want: ""

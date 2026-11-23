@@ -1,0 +1,25 @@
+# "Don't use slashes": "and/or" leaves the reader to decide what the writer
+# meant. Choose "and" or "or", or write "X, Y, or both". Link text is
+# usually a path or a repository name, and is left alone.
+extends: existence
+message: "'%s' leaves the reader to decide. Use 'and' or 'or', or write 'X, Y, or both'."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/conversational/dont-use-slashes.md
+level: warning
+scope: ~link
+nonword: true
+tokens:
+  - '\b[Aa]nd/[Oo]r\b'
+  - '(?<![\w/.:~@#-])(?!(?:he|his|him|she|her|s)/)[a-z]{2,}/[a-z]{2,}(?![\w/.@-])'
+
+tests:
+  - name: fires
+    input: |
+      Send the form and/or the fee to the faculty/staff office.
+    want: |
+      1:15:PlainLanguage.Slashes:'and/or' leaves the reader to decide. Use 'and' or 'or', or write 'X, Y, or both'.
+      1:37:PlainLanguage.Slashes:'faculty/staff' leaves the reader to decide. Use 'and' or 'or', or write 'X, Y, or both'.
+  - name: clean
+    input: |
+      Send the form, the fee, or both. Use TCP/IP, a 3/4 share, 60 km/h, and the docs/index.md file.
+      The image is at [jdkato/vale](https://hub.docker.com/r/jdkato/vale).
+    want: ""
