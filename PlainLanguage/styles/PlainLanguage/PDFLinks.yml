@@ -1,0 +1,32 @@
+# "Avoid PDF overload": a PDF is slow, hard to read on a phone, and hard
+# for some readers. Link to a page that says what it is and how large.
+extends: existence
+message: "A link straight to a PDF. Link to a page that says what the file covers, how large it is, and who needs it."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/web/avoid-pdf-overload.md
+level: suggestion
+# Vale keeps a link's target out of every scope but raw, so the rule reads
+# the file as written. An even count of backticks before the match on its
+# line keeps code spans out.
+scope: raw
+nonword: true
+tokens:
+  - '(?<=(?:^|\n)(?:[^`\n]*`[^`\n]*`)*[^`\n]*)\]\(\s*<?[^)\s>]+\.(?i:pdf)(?:[?#][^)\s>]*)?>?(?:\s+"[^"]*")?\s*\)'
+  - '(?<=(?:^|\n)(?:[^`\n]*`[^`\n]*`)*[^`\n]*)(?<=(?:^|\n)\s*)\[[^\]\n]+\]:\s*<?\S+\.(?i:pdf)(?:[?#]\S*)?>?'
+  - '(?<=(?:^|\n)(?:[^`\n]*`[^`\n]*`)*[^`\n]*)(?i:<a\b[^>]*\bhref\s*=\s*["'']?[^"''\s>]+\.pdf(?:[?#][^"''\s>]*)?["'']?[^>]*>)'
+
+tests:
+  - name: fires
+    input: |
+      Read the [annual report](https://example.gov/report.pdf).
+    want: |
+      1:24:PlainLanguage.PDFLinks:A link straight to a PDF. Link to a page that says what the file covers, how large it is, and who needs it.
+  - name: html
+    format: html
+    input: |
+      <p>Read the <a href="/files/report.PDF">annual report</a>.</p>
+    want: |
+      1:13:PlainLanguage.PDFLinks:A link straight to a PDF. Link to a page that says what the file covers, how large it is, and who needs it.
+  - name: clean
+    input: |
+      Read the [annual report](https://example.gov/report), a 2 MB PDF. Don't write `[x](a.pdf)`.
+    want: ""

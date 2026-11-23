@@ -1,0 +1,27 @@
+# "Avoid noun strings": three or more nouns in a row, "underground mine
+# worker safety protection procedures". Hyphenated words are left out.
+extends: sequence
+message: "Three nouns in a row. Open the string up with 'of', 'for', or a verb."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/words/avoid-noun-strings.md
+level: suggestion
+tokens:
+  - tag: '^NNS?$'
+    negate: true
+  - tag: '^NN$'
+    pattern: '[a-z]+'
+    min: 2
+    target: true
+  - tag: '^NNS?$'
+    pattern: '[a-z]+'
+    target: true
+
+tests:
+  - name: fires
+    input: |
+      Read the mine worker safety rules.
+    want: |
+      1:10:PlainLanguage.NounStack:Three nouns in a row. Open the string up with 'of', 'for', or a verb.
+  - name: clean
+    input: |
+      Read the rules that keep mine workers safe.
+    want: ""

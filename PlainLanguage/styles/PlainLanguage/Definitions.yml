@@ -1,0 +1,24 @@
+# "Minimize definitions": "use them rarely". A definition gives a word a
+# meaning the reader has to remember; rewrite so the word needs none.
+extends: existence
+message: "'%s' starts a definition. Use the word in its everyday sense, or define it where you use it."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/words/minimize-definitions.md
+level: suggestion
+ignorecase: true
+tokens:
+  - 'for (?:the )?purposes? of this (?:section|part|subpart|chapter|paragraph|regulation|rule|document|notice|agreement|policy|title|act)'
+  - 'as used in this (?:section|part|subpart|chapter|paragraph|regulation|rule|document|notice|agreement|policy|title|act)'
+  - 'the (?:term|word|phrase) ["“''‘]?[\w -]{1,40}?["”''’]? means'
+
+tests:
+  - name: fires
+    input: |
+      For the purposes of this part, the term "livestock" means cattle. As used in this section, a page is a sheet.
+    want: |
+      1:1:PlainLanguage.Definitions:'For the purposes of this part' starts a definition. Use the word in its everyday sense, or define it where you use it.
+      1:32:PlainLanguage.Definitions:'the term "livestock" means' starts a definition. Use the word in its everyday sense, or define it where you use it.
+      1:67:PlainLanguage.Definitions:'As used in this section' starts a definition. Use the word in its everyday sense, or define it where you use it.
+  - name: clean
+    input: |
+      This part covers cattle. A page is one sheet of paper.
+    want: ""

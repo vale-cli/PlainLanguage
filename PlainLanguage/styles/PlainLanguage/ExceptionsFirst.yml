@@ -1,0 +1,23 @@
+# "Place the main idea before exceptions and conditions": a sentence that
+# opens with the exception makes the reader hold it before the rule. A
+# short "Unless" clause is allowed; the guidelines use one.
+extends: existence
+message: "The sentence opens with an exception, '%s'. State the main idea first."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/organize/place-the-main-idea-before-exceptions-and-conditions.md
+level: suggestion
+scope: sentence
+tokens:
+  - '^(?:Except|Notwithstanding|Subject to)\b'
+  - '^Unless\b(?=(?:[^,.;]*?\s){8})'
+
+tests:
+  - name: fires
+    input: |
+      Except as described in paragraph (b), we will not begin the review. Unless you have already sent us an up-to-date resume with your application, send one now.
+    want: |
+      1:1:PlainLanguage.ExceptionsFirst:The sentence opens with an exception, 'Except'. State the main idea first.
+      1:69:PlainLanguage.ExceptionsFirst:The sentence opens with an exception, 'Unless'. State the main idea first.
+  - name: clean
+    input: |
+      We will not begin the review until your submission is complete. Unless you sent one, send a resume. We accept every form except the old one.
+    want: ""

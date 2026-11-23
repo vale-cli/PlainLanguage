@@ -12,12 +12,16 @@ Works on [Markdown](https://docs.vale.sh/formats/markdown),
 [AsciiDoc](https://docs.vale.sh/formats/asciidoc),
 [reStructuredText](https://docs.vale.sh/formats/restructuredtext),
 [Org](https://docs.vale.sh/formats/org), and
-[plain text](https://docs.vale.sh/formats/text). `LinkText` and
-`HowToHeadings` read links and headings, so they need a markup format.
+[plain text](https://docs.vale.sh/formats/text). `LinkText`, `PDFLinks`,
+`HowToHeadings`, and `FAQ` read links and headings, so they need a markup
+format.
 
 ## Install
 
-Requires Vale 3.20.0 or later.
+Requires Vale 3.20.0 or later, and builds on
+[Std](https://github.com/vale-cli/Std), the standard library the sentence,
+passive, and acronym rules extend. Sync pulls Std in; it stays present
+without being enabled.
 
 ```ini
 StylesPath = styles
@@ -61,6 +65,14 @@ guidelines' word list, for agency writing; add it beside the core.
 | `Acronyms` | Minimize abbreviations | `ESAC` before `Engineering Safety Advisory Committee (ESAC)` |
 | `LinkText` | Write effective links | `click here`, `read more` |
 | `HowToHeadings` | Effective headings | `## How to get a permit` |
+| `NounStack` | Avoid noun strings | `mine worker safety rules` |
+| `CrossReferences` | Minimize cross-references | `Section 18`, `paragraph (b)`, `§ 12`, `under subsection` |
+| `FAQ` | Avoid FAQs | `## FAQ`, `## Frequently asked questions` |
+| `PDFLinks` | Avoid PDF overload | `[annual report](report.pdf)`, `<a href="report.pdf">` |
+| `ExceptionsFirst` | Place the main idea before exceptions and conditions | `Except as described in ...`, `Notwithstanding ...`, `Subject to ...`, a long opening `Unless` clause |
+| `Will` | Use the present tense | `will be required to`, `will need to`, `will be able to` |
+| `Definitions` | Minimize definitions | `For the purposes of this part`, `the term "farm" means`, `As used in this section` |
+| `Only` | Place words carefully | `You only need to`, `are only required to` |
 
 Every rule file starts with a comment naming the guideline it comes from
 and links to it. The word rules carry a fix: each verb is listed in its four
@@ -80,7 +92,8 @@ PlainLanguage.PassiveVoice = NO
 ```
 
 `Acronyms` accepts the abbreviations the guidelines call common knowledge,
-such as `FBI` and `ATM`, and a few more like them. Your own go in a
+such as `FBI` and `ATM`, and Std's list of common technical ones, such as
+`API`, `HTML`, `JSON`, and `URL`. Your own go in a
 [vocabulary](https://docs.vale.sh/topics/vocab), which the rule reads:
 
 ```
@@ -91,9 +104,9 @@ styles/config/vocabularies/Agency/accept.txt
 Vocab = Agency
 ```
 
-Technical writing uses many abbreviations its readers know, such as `API`,
-`HTML`, `JSON`, and `URL`. Add those to the vocabulary too, one per line,
-and `Acronyms` stops asking for them.
+Technical writing uses more abbreviations its readers know than Std lists,
+such as `CI`, `YAML`, and `INI`. Add those to the vocabulary too, one per
+line, and `Acronyms` stops asking for them.
 
 A definition counts from the point it appears: `ESAC` before
 `Engineering Safety Advisory Committee (ESAC)` is flagged, and every use
@@ -109,16 +122,23 @@ the reader is or whether the order serves them.
 
 Some are checkable only roughly, and are left out rather than guessed at:
 
-- Noun strings, "underground mine worker safety protection procedures".
-  Telling a stack of nouns from a stack of adjectives takes a parser.
-- Present tense and contractions. The guidelines ask for them "where they
-  sound natural", which a rule can't judge.
+- Present tense beyond the requirement phrases `Will` knows, and
+  contractions. The guidelines ask for them "where they sound natural",
+  which a rule can't judge.
+- Conditions and exceptions in the middle or at the end of a sentence.
+  `ExceptionsFirst` reads only the opening, and leaves a short `Unless`
+  clause alone, as the guidelines do.
+- The boomerang, a cross-reference to the section it's in. A rule can't
+  tell which section it's reading.
 - At most three abbreviations in a document. A rule can count uses, not
   distinct abbreviations.
 - The simple-words entries with no fixed meaning: `subject`, `type`,
   `said, some, such`, `vice`, and `this activity, command`.
 
-`PassiveVoice` finds a form of "be" and a past participle. The guidelines
+`NounStack` reads parts of speech, so it misses some stacks and flags a few
+that aren't; `Only` reads "only" after a pronoun, so `You only need` is
+flagged and `You need only` is not. `PassiveVoice` finds a form of "be" and a past
+participle. The guidelines
 allow the passive when the law is the actor or the actor doesn't matter,
 so it's a suggestion; participles used as adjectives, `is located`, `are
 required`, are left alone.
@@ -145,6 +165,14 @@ that GSA keeps on GitHub:
 | [Minimize abbreviations](https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/words/minimize-abbreviations.md) | `Acronyms` |
 | [Write effective links](https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/web/write-effective-links.md) | `LinkText` |
 | [Effective headings](https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/organize/effective-headings.md) | `HowToHeadings` |
+| [Avoid noun strings](https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/words/avoid-noun-strings.md) | `NounStack` |
+| [Minimize cross-references](https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/design/minimize-cross-references.md) | `CrossReferences` |
+| [Avoid FAQs](https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/web/avoid-faqs.md) | `FAQ` |
+| [Avoid PDF overload](https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/web/avoid-pdf-overload.md) | `PDFLinks` |
+| [Place the main idea before exceptions and conditions](https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/organize/place-the-main-idea-before-exceptions-and-conditions.md) | `ExceptionsFirst` |
+| [Use the present tense](https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/conversational/use-the-present-tense.md) | `Will` |
+| [Minimize definitions](https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/words/minimize-definitions.md) | `Definitions` |
+| [Place words carefully](https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/words/place-words-carefully.md) | `Only` |
 
 ## Development
 
@@ -152,7 +180,8 @@ that GSA keeps on GitHub:
 checks `fixtures/page.md` and `fixtures/page.html` against the golden files
 in `testdata/` and requires their rewrites in `fixtures/clean/` to pass
 clean. `./test.sh -u` rewrites the golden files. The test runner needs Vale
-3.24.0 or later.
+3.24.0 or later, and a [Std](https://github.com/vale-cli/Std) checkout
+beside this repository, or `STD` pointing at its `Std` directory.
 
 The swap lists of `SimpleWords`, `HiddenVerbs`, and `Strict.Words` are
 generated, with every verb written out in its forms. Edit the lists in

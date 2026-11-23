@@ -1,0 +1,30 @@
+# "Minimize cross-references": each one sends the reader elsewhere before
+# they have the point. Repeat short material, and move the rest to the end.
+extends: existence
+message: "'%s' sends the reader elsewhere. Repeat what it says if it's short, or move the reference to the end."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/design/minimize-cross-references.md
+level: suggestion
+ignorecase: true
+nonword: true
+tokens:
+  - '\b(?:sub)?(?:section|paragraph|subpart|clause)s?\s+(?:\d+(?:\.\d+)*[a-z]?(?:\([a-z0-9]+\))*|\([a-z0-9]+\))'
+  - '§+\s*\d+(?:\.\d+)*[a-z]?(?:\([a-z0-9]+\))*'
+  - '\bunder (?:this |that )?subsection\b'
+
+tests:
+  - name: fires
+    input: |
+      Bring a pass listed in Section 18, as described in paragraph (b) and § 12.3.
+    want: |
+      1:24:PlainLanguage.CrossReferences:'Section 18' sends the reader elsewhere. Repeat what it says if it's short, or move the reference to the end.
+      1:52:PlainLanguage.CrossReferences:'paragraph (b)' sends the reader elsewhere. Repeat what it says if it's short, or move the reference to the end.
+      1:70:PlainLanguage.CrossReferences:'§ 12.3' sends the reader elsewhere. Repeat what it says if it's short, or move the reference to the end.
+  - name: subsection
+    input: |
+      You may camp under subsection rules.
+    want: |
+      1:14:PlainLanguage.CrossReferences:'under subsection' sends the reader elsewhere. Repeat what it says if it's short, or move the reference to the end.
+  - name: clean
+    input: |
+      Bring a daily, weekly, or annual vehicle pass. This section explains how.
+    want: ""

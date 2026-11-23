@@ -1,12 +1,9 @@
 # "Write short sentences": one idea in each. The guidelines give no number;
-# 25 words is a common ceiling, and a parameter.
-extends: occurrence
+# Std's 25 words is a common ceiling, and a parameter.
+extends: Std.Readability.SentenceLength
 message: "%d words in one sentence. Split it, one idea in each."
 link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/concise/write-short-sentences.md
 level: suggestion
-scope: sentence
-max: 25
-token: '\b\w+\b'
 
 tests:
   - name: fires

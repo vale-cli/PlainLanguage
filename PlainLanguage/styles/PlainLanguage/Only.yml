@@ -1,0 +1,22 @@
+# "Place words carefully": put "only" next to the word it limits. "You only
+# need to provide" says less than "You need to provide only".
+extends: existence
+message: "'%s': put 'only' next to the word it limits."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/words/place-words-carefully.md
+level: suggestion
+ignorecase: true
+tokens:
+  - '(?:I|you|we|they|he|she|it) only (?!if\b|when\b|after\b|before\b|once\b|because\b|one\b|a\b|an\b|the\b|\d)[a-z]+'
+  - '(?:am|is|are|was|were) only (?:required|allowed|permitted|needed|expected|asked) to'
+
+tests:
+  - name: fires
+    input: |
+      You only need to send one copy, and you are only required to provide the following.
+    want: |
+      1:1:PlainLanguage.Only:'You only need': put 'only' next to the word it limits.
+      1:41:PlainLanguage.Only:'are only required to': put 'only' next to the word it limits.
+  - name: clean
+    input: |
+      You need to send only one copy. Apply only if you qualify, and you may only file when the office is open.
+    want: ""

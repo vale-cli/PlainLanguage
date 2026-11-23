@@ -36,4 +36,12 @@ jobs:
             tar xz -C "$RUNNER_TEMP/bin" vale
           echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
 
+      - uses: actions/checkout@v4
+        with:
+          repository: vale-cli/Std
+          path: std-src
+
+      # Std present on the StylesPath but not enabled, the shape sync leaves.
       - run: ./test.sh
+        env:
+          STD: ${{ github.workspace }}/std-src/Std

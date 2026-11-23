@@ -1,0 +1,24 @@
+# "Avoid FAQs": clear content answers the questions where they come up. A
+# FAQ section repeats it and goes out of date.
+extends: existence
+message: "A FAQ section. Put each answer in the content where readers look for it."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/web/avoid-faqs.md
+level: suggestion
+scope: heading
+nonword: true
+raw:
+  - '(?i)^\s*(?:FAQs?|Frequently asked questions)\b'
+
+tests:
+  - name: fires
+    input: |
+      ## Frequently asked questions
+
+      ## FAQ
+    want: |
+      1:4:PlainLanguage.FAQ:A FAQ section. Put each answer in the content where readers look for it.
+      3:4:PlainLanguage.FAQ:A FAQ section. Put each answer in the content where readers look for it.
+  - name: clean
+    input: |
+      ## Renewing your permit
+    want: ""

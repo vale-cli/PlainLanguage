@@ -1,6 +1,7 @@
 fixtures/page.html:5:5:PlainLanguage.HowToHeadings:Start the heading with the action: 'Getting a permit', not 'How to get a permit'.
 fixtures/page.html:6:22:PlainLanguage.Shall:Use 'must' instead of 'shall'. For an option, 'may'; for a recommendation, 'should'.
 fixtures/page.html:6:55:PlainLanguage.Legalese:Use 'Under', 'By', or 'Following' instead of 'Pursuant to'.
+fixtures/page.html:6:67:PlainLanguage.CrossReferences:'section 4' sends the reader elsewhere. Repeat what it says if it's short, or move the reference to the end.
 fixtures/page.html:6:87:PlainLanguage.PassiveVoice:'are processed' is passive. Say who does it.
 fixtures/page.html:6:104:PlainLanguage.Acronyms:'BLM' has no definition. Spell it out the first time, or use a short name instead.
 fixtures/page.html:6:108:PlainLanguage.Legalese:Use 'under', 'by', or 'following' instead of 'in accordance with'.
@@ -12,3 +13,6 @@ fixtures/page.html:7:114:PlainLanguage.SimpleWords:Use 'use' instead of 'utilize
 fixtures/page.html:7:131:PlainLanguage.Wordy:Use 'regularly' instead of 'on a regular basis'.
 fixtures/page.html:8:21:PlainLanguage.Slashes:'and/or' leaves the reader to decide. Use 'and' or 'or', or write 'X, Y, or both'.
 fixtures/page.html:8:90:PlainLanguage.LinkText:'click here' doesn't say where the link goes. Use the name of the page.
+fixtures/page.html:9:4:PlainLanguage.ExceptionsFirst:The sentence opens with an exception, 'Except'. State the main idea first.
+fixtures/page.html:9:26:PlainLanguage.Will:Use 'must' or 'need to' instead of 'will need to'.
+fixtures/page.html:9:48:PlainLanguage.PDFLinks:A link straight to a PDF. Link to a page that says what the file covers, how large it is, and who needs it.

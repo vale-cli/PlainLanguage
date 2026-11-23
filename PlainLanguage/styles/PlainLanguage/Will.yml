@@ -1,0 +1,32 @@
+# "Use the present tense": "you will be required to" is a requirement put
+# off to the future. Say "must", "can", or "may" now.
+extends: substitution
+message: "Use '%s' instead of '%s'."
+link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/conversational/use-the-present-tense.md
+level: suggestion
+ignorecase: true
+matchcase: true
+action:
+  name: replace
+swap:
+  will be required to: must
+  will need to: must|need to
+  will have to: must
+  will be expected to: must|should
+  will be able to: can
+  will be allowed to: may|can
+  will be permitted to: may
+  will be responsible for: are responsible for|is responsible for
+  will be eligible for: are eligible for|is eligible for
+
+tests:
+  - name: fires
+    input: |
+      You will be required to file a form, and you will need to pay the fee.
+    want: |
+      1:5:PlainLanguage.Will:Use 'must' instead of 'will be required to'.
+      1:46:PlainLanguage.Will:Use 'must' or 'need to' instead of 'will need to'.
+  - name: clean
+    input: |
+      You must file a form and pay the fee. We will send a receipt.
+    want: ""

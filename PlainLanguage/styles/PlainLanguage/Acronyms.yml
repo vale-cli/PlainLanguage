@@ -1,15 +1,14 @@
 # "Minimize abbreviations": define one the first time you use it, as
 # "Engineering Safety Advisory Committee (ESAC)" or "ESAC (Engineering
-# Safety Advisory Committee)". Those that have entered common usage need
-# no definition; add your own to a vocabulary.
-extends: conditional
+# Safety Advisory Committee)". Std's list of common technical ones, and
+# those the guidelines call common usage, need no definition.
+extends: Std.Abbreviations.Acronyms
 message: "'%s' has no definition. Spell it out the first time, or use a short name instead."
 link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/words/minimize-abbreviations.md
 level: suggestion
-ignorecase: false
 first: '\b([A-Z]{2,5})s?\b'
 second: '\w+\s+\(([A-Z]{2,5})s?\)|\b([A-Z]{2,5})s?\s+\([A-Z][a-z]'
-exceptions:
+exceptions+:
   # The guidelines' examples of abbreviations everyone knows.
   - ATM
   - BMW
@@ -29,13 +28,9 @@ exceptions:
   - ID
   - DC
   - CEO
-  - FAQ
-  - PDF
   - PIN
-  - ZIP
   - ASAP
-  # Admonition labels, which are words.
-  - NOTE
+  # An admonition label, which is a word.
   - TIP
   # Roman numerals.
   - II
@@ -57,5 +52,5 @@ tests:
       1:80:PlainLanguage.Acronyms:'ESAC' has no definition. Spell it out the first time, or use a short name instead.
   - name: clean
     input: |
-      The Engineering Safety Advisory Committee (ESAC) meets monthly. ESAC (the committee) sends the FBI and the IRS (Internal Revenue Service) a copy.
+      The Engineering Safety Advisory Committee (ESAC) meets monthly. ESAC (the committee) sends the FBI and the IRS (Internal Revenue Service) a copy of the API docs.
     want: ""

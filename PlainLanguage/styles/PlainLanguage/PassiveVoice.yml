@@ -1,14 +1,16 @@
 # "Use active voice": a form of "be" and a past participle, "must be
-# included", "were proposed". Participles used as adjectives, and verbs
-# that read as states in instructions, are left out.
-extends: existence
+# included", "were proposed". Std has the participles; participles used as
+# adjectives, and verbs that read as states, are left out.
+extends: Std.Grammar.PassiveVoice
 message: "'%s' is passive. Say who does it."
 link: https://github.com/GSA/plainlanguage.gov/blob/main/_pages/guidelines/conversational/use-active-voice.md
 level: suggestion
-ignorecase: true
-tokens:
-  - '\b(?:am|are|is|was|were|be|been|being)\s+(?:being\s+)?(?:\w+ly\s+)?(?!(?:used|supposed|going) to\b)(?:\w{2,}ed|beaten|begun|bitten|bought|brought|built|caught|chosen|dealt|done|drawn|driven|forbidden|forgotten|given|held|hidden|kept|known|laid|led|lost|made|meant|paid|proven|sent|shown|sold|spent|spoken|stolen|taken|taught|thrown|told|understood|withheld|written)\b'
+# Std's prefix, with room for an adverb: "are automatically added".
+raw:
+  - \b(am|are|were|being|is|been|was|be)\b\s*(?:\w+ly\s+)?
 exceptions:
+  - gone
+  - supposed
   - tired
   - interested
   - concerned
@@ -63,7 +65,13 @@ tests:
       1:17:PlainLanguage.PassiveVoice:'were proposed' is passive. Say who does it.
       1:41:PlainLanguage.PassiveVoice:'was polluted' is passive. Say who does it.
       1:85:PlainLanguage.PassiveVoice:'be withheld' is passive. Say who does it.
+  - name: adverbs and irregular participles
+    input: |
+      The forms are automatically sent, and the fee is split.
+    want: |
+      1:11:PlainLanguage.PassiveVoice:'are automatically sent' is passive. Say who does it.
+      1:47:PlainLanguage.PassiveVoice:'is split' is passive. Say who does it.
   - name: clean
     input: |
-      We proposed new regulations. The company polluted the lake. The office is located in Denver, and you are required to sign. I am interested, and I used to live there.
+      We proposed new regulations. The company polluted the lake. The office is located in Denver, and you are required to sign. I am interested, I used to live there, and the form is gone.
     want: ""

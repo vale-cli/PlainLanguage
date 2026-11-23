@@ -13,3 +13,7 @@ You may not apply until June. File no fewer than three copies, since an applicat
 [Click here](https://example.gov/apply) to start. The office will provide the forms when you submit a request.
 
 We pay grants to farms of every size. We pay them once a year. We send the money by direct deposit. You choose the bank. You can change the bank at any time. We check each farm before we pay. We visit the farm in the spring. We look at the fields. We look at the barns. We talk to the farmer. We write down what we see. We send you a copy of our notes. You can tell us if we got something wrong. We fix our notes when you do. If you grow more than one crop on the same field in a single season and you want us to count each crop as its own harvest for the grant, tell us before the visit. We count the crops in the summer. We pay in the fall. We send a letter when we pay. The letter says how much we paid. It says what the money is for. Keep the letter for your taxes. Call us if the letter is wrong. We answer calls on weekdays. We answer email every day.
+
+## Frequently asked questions
+
+Except as described in paragraph (b), you will be required to file the farm grant application form. For the purposes of this part, the term "farm" means any field you lease. You only need to file once. Read the [grant rules](https://example.gov/rules.pdf) first.
