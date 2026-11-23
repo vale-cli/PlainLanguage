@@ -25,7 +25,7 @@ without being enabled.
 
 ```ini
 StylesPath = styles
-Packages = https://github.com/vale-cli/PlainLanguage/releases/latest/download/PlainLanguage.zip
+Packages = PlainLanguage
 
 [*.{md,html}]
 BasedOnStyles = PlainLanguage
@@ -34,6 +34,10 @@ BasedOnStyles = PlainLanguage
 ```console
 $ vale sync
 ```
+
+`PlainLanguage` is in the [package library](https://vale.sh/explorer), so
+the name is enough. To pin a version, give its release URL instead:
+`https://github.com/vale-cli/PlainLanguage/releases/download/<version>/PlainLanguage.zip`.
 
 `PlainLanguage` is the core style. `Strict` is the rest of the
 guidelines' word list, for agency writing; add it beside the core.
