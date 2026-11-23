@@ -98,7 +98,7 @@ PlainLanguage.PassiveVoice = NO
 `Acronyms` accepts the abbreviations the guidelines call common knowledge,
 such as `FBI` and `ATM`, and Std's list of common technical ones, such as
 `API`, `HTML`, `JSON`, and `URL`. Your own go in a
-[vocabulary](https://docs.vale.sh/topics/vocab), which the rule reads:
+[vocabulary](https://docs.vale.sh/keys/vocabularies), which the rule reads:
 
 ```
 styles/config/vocabularies/Agency/accept.txt
